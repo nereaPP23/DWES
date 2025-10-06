@@ -16,17 +16,20 @@ $gente = array (
     )
     );
 
+    echo "<ul>";
     foreach ($gente as $contenido) {
         foreach ($contenido as $indice => $valor) {
             if (is_array($valor)) {
-            echo "$indice:";
+            echo "<li>$indice<br></li>";
+            echo "<ul>";
                 foreach ($valor as $valor2) {
-                    echo "$valor2 ";
+                    echo "<li>$valor2<br></li>";
                 }
-            echo "<br><br>";
+           echo "</ul>";
             }else{
-                echo "$indice: $valor <br>";
+                echo "<li>$indice: $valor<br></li>";
             } 
         }
 }
+    echo "</ul>";
 ?>
