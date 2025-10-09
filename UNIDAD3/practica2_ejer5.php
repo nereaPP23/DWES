@@ -11,8 +11,8 @@ for($i=0; $i<3; $i++){
 for($i=0; $i<3; $i++){
     for($j=0; $j<5; $j++){
         echo $matriz[$i][$j]." ";
-        
     }
+    echo "<br>";
 }
 
 echo "<br><br>";
