@@ -11,6 +11,11 @@ $lenguajes_servidor = array(
     'ASP1'=> 'ASP'
 );
 
+/*array_merge(array1, array2)
+Lo que hace es unir dos arrays, y devolver un nuevo array con los valores de ambos
+Array2 se añade al final del array1
+*/
+
 $lenguajes = array_merge($lenguajes_cliente, $lenguajes_servidor);
 
 echo "<table border='1'>";
