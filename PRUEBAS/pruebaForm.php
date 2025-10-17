@@ -40,7 +40,7 @@ if (isset($_POST['numero1']) && isset($_POST['numero2']) && isset($_POST['operac
         <h2>Resultado:</h2>
         <p>El resultado de la <strong>$operacion</strong> es: <strong>$resultado</strong></p>
         <br>
-        <a href="form.php">🔁 Volver a calcular</a>
+        <a href="pruebaForm.php">🔁 Volver a calcular</a>
     </body>
     </html>
     _END;
@@ -56,7 +56,7 @@ if (isset($_POST['numero1']) && isset($_POST['numero2']) && isset($_POST['operac
     </head>
     <body>
         <h2>Calculadora simple</h2>
-        <form method="post" action="form.php">
+        <form method="post" action="pruebaForm.php">
             <label for="numero1">Número 1:</label><br>
             <input type="number" id="numero1" name="numero1" required><br><br>
 
