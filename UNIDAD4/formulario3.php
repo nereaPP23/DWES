@@ -1,4 +1,5 @@
 <?php
+$suma = null;
 if (isset($_POST['num1'])&&isset($_POST['num2'])) {
     $suma = $_POST['num1'] + $_POST['num2'];
    
@@ -20,6 +21,6 @@ if (isset($_POST['num1'])&&isset($_POST['num2'])) {
 </html>
 <?php
 if(!is_null($suma)){
-    echo "<h1>El resultado es: $suma</h1>";
+    echo "<strong>El resultado es: $suma</strong>";
 }
 ?>
