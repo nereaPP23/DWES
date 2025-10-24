@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+$_SESSION['decimalcorrecto'] = 0;
 
 $binario = [rand(0, 1), rand(0, 1), rand(0, 1), rand(0, 1)];
 $potencias = [8, 4, 2, 1];
@@ -17,11 +18,11 @@ echo <<<_END
         <h1>Adivina el número decimal</h1>
 
 _END;
-       echo "<h2>El número en BINARIO es: </h2>";
+       echo "<h2>El número en BINARIO es: ";
        foreach ($binario as $bin){
            echo "<strong>$bin</strong>";
        }
-       echo "<br>";
+       echo "</h2><br>";
        for ($i = 0; $i < 4; $i++) {
            if ($binario[$i] == 1) {
                switch ($potencias[$i]) {
