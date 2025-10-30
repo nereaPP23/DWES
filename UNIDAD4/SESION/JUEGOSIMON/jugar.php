@@ -2,9 +2,12 @@
 session_start();
 include "pintar-circulos.php";
 
+//asegurarse de que jugada esta creado
 if (!isset($_SESSION['jugada'])) {
     $_SESSION['jugada'] = [];
 }
+
+//guardar colores en el array jugada
 if (isset($_POST['color'])) {
     $color = $_POST['color'];
     $_SESSION['jugada'][] = $color;
