@@ -10,18 +10,30 @@ if (isset($_POST['color'])) {
     $_SESSION['jugada'][] = $color;
 }
 
-$resultado = ""; // mensaje que mostraremos al final
-if (count($_SESSION['jugada']) === 4) {
-    if ($_SESSION['jugada'] === $_SESSION['combinacioncorrecta']) {
-        $resultado = "¡Has acertado la combinación!";
-    } else {
-        $resultado = "Has fallado la combinación.";
-    }
+
+
+//pintar circulos segun botones pulsados
+if (count($_SESSION['jugada']) !== 4) {
+        $colores = ['black', 'black', 'black', 'black'];
+            for ($i = 0; $i < count($_SESSION['jugada']); $i++) {
+                $colores[$i] = $_SESSION['jugada'][$i];
+            }
+        pintar_circulos($colores[0], $colores[1], $colores[2], $colores[3]);
 }
 
 
 
-
+//llamar script de respuesta
+if(count($_SESSION['jugada']) === 4){
+    if ($_SESSION['jugada'] === $_SESSION['combinacioncorrecta']) {
+        header("Location: acierto.php");
+        exit();
+    } else {
+        header("Location: fallo.php");
+        exit();
+    }
+   
+}
 
 
 echo <<<_END
@@ -31,7 +43,6 @@ echo <<<_END
             <h2>Pulsa los botones en el orden correspondiente</h2>
 _END;
 
-pintar_circulos('black', 'black', 'black', 'black');
 
 echo <<<_END
     <form action="jugar.php" method="post">
@@ -44,28 +55,8 @@ echo <<<_END
 </html>
 _END;
 
-if ($resultado != "") {
-    echo "<h3>$resultado</h3>";
 
-    echo "<p>Combinación correcta:</p>";
-    pintar_circulos(
-        $_SESSION['combinacioncorrecta'][0],
-        $_SESSION['combinacioncorrecta'][1],
-        $_SESSION['combinacioncorrecta'][2],
-        $_SESSION['combinacioncorrecta'][3]
-    );
 
-    echo "<p>Tu combinación:</p>";
-    pintar_circulos(
-        $_SESSION['jugada'][0],
-        $_SESSION['jugada'][1],
-        $_SESSION['jugada'][2],
-        $_SESSION['jugada'][3]
-    );
-
-    // Reiniciar para volver a jugar
-    $_SESSION['jugada'] = [];
-}
 
 
 ?>
