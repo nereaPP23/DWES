@@ -14,23 +14,6 @@ if (isset($_POST['color'])) {
 }
 
 
-
-//pintar circulos segun botones pulsados
-if (count($_SESSION['jugada']) !==$_SESSION['numero'] ) {
-    for ($i = 0; $i < ($_SESSION['numero']); $i++) {
-        $colores [$i] = 'black';
-    }
-            for ($i = 0; $i < count($_SESSION['jugada']); $i++) {
-                $colores[$i] = $_SESSION['jugada'][$i];
-            }
-
-        for ($i = 0; $i < ($_SESSION['numero']); $i++) {
-        pintar_circulos($colores[0], $colores[1], $colores[2], $colores[3]);
-            }
-    }
-
-
-
 //llamar script de respuesta
 if(count($_SESSION['jugada']) === $_SESSION['numero']){
     if ($_SESSION['jugada'] === $_SESSION['combinacioncorrecta']) {
@@ -44,6 +27,21 @@ if(count($_SESSION['jugada']) === $_SESSION['numero']){
 }
 
 
+
+//pintar circulos segun botones pulsados
+if (count($_SESSION['jugada']) !==$_SESSION['numero'] ) {
+    for ($i = 0; $i < ($_SESSION['numero']); $i++) {
+        $colores [$i] = 'black';
+    }
+            for ($i = 0; $i < count($_SESSION['jugada']); $i++) {
+                $colores[$i] = $_SESSION['jugada'][$i];
+            }
+
+    }
+
+
+
+
 echo <<<_END
 <html>
     <body>
@@ -51,6 +49,7 @@ echo <<<_END
             <h2>Pulsa los botones en el orden correspondiente</h2>
 _END;
 
+    pintar_circulos($colores);
 
 echo <<<_END
     <form action="jugar.php" method="post">
