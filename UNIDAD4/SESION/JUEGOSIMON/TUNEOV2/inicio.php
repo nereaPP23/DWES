@@ -6,8 +6,9 @@ unset($_SESSION['colores-escogidos']); //Para eliminar una variable de sesión p
 unset($_SESSION['colores-correctos']); 
 
 $_SESSION['numero'] = intval($_POST['numero']);
+$_SESSION['numero-colores'] = intval($_POST['numero-colores']);
 
-$colores = array('red','blue','yellow','green');
+$colores = array('red','blue','yellow','green','purple','orange','pink','brown');
 for ($i = 0; $i < $_SESSION['numero']; $i++) {
     $_SESSION['colores-correctos'][$i] = $colores[rand(0,3)];
 }
