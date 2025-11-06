@@ -8,10 +8,14 @@ unset($_SESSION['colores-correctos']);
 $_SESSION['numero'] = intval($_POST['numero']);
 $_SESSION['numero-colores'] = intval($_POST['numero-colores']);
 
-$colores = array('red','blue','yellow','green','purple','orange','pink','brown');
+$todos_colores = array('red','blue','yellow','green','purple','orange','pink','brown');
+
+//seleccionamos solo los colores permitidos por el jugador
+$colores_disponibles=array_slice($todos_colores,0,$_SESSION['numero-colores']);
 for ($i = 0; $i < $_SESSION['numero']; $i++) {
-    $_SESSION['colores-correctos'][$i] = $colores[rand(0,3)];
+    $_SESSION['colores-correctos'][$i] = $colores_disponibles[rand(0,count ($colores_disponibles)-1)];
 }
+
 
 echo <<<_END
 <html>
