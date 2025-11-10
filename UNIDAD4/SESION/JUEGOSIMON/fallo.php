@@ -2,7 +2,7 @@
 session_start();
 include "pintar-circulos.php";
 
-echo "<h2>Lo sentimos, has fallado</h2>";
+echo "<h2>$_SESSION[usuario], lo sentimos has fallado</h2>";
 
 echo "<p>Combinación correcta:</p>";
     pintar_circulos(
