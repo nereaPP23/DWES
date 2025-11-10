@@ -1,5 +1,7 @@
 <?php  
 
+session_start();
+
 $hn = 'localhost';
 $db = 'bdsimon';
 $un = 'root';
@@ -14,8 +16,13 @@ $error='';
 
  if (isset($_POST['submit'])) {
     if (!empty($_POST['usuario']) && !empty($_POST['contrasenia'])){
-     $usuario = $_POST['usuario'];
+    $usuario = $_POST['usuario'];
+    $_SESSION['usuario'] = $usuario;
      $contrasenia = $_POST['contrasenia'];
+
+
+
+
      $query = "SELECT * FROM usuarios WHERE Nombre = '$usuario' AND Clave = '$contrasenia'";
      $result = $connection->query($query);
      if (!$result) die("Fatal Error");
@@ -33,7 +40,7 @@ $error='';
  }
 
 
-     $connection->close();
+    $connection->close();
 echo <<<_END
 <html>
     <body>
@@ -41,7 +48,7 @@ echo <<<_END
             <h2>Ingresa tus datos</h2>
             <form action="login.php" method="post">
                 <label for="usuario">Usuario:</label><br>
-                <input type="text" name="usuario"><br><>
+                <input type="text" name="usuario"><br><br>
                 <label for="contrasenia">Contraseña:</label><br>
                 <input type="password" name="contrasenia"><br><br>
                 <input type="submit" name="submit" value="Enviar">
