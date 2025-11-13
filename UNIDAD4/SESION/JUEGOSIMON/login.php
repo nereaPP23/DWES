@@ -52,6 +52,7 @@ echo <<<_END
                 <label for="contrasenia">Contraseña:</label><br>
                 <input type="password" name="contrasenia"><br><br>
                 <input type="submit" name="submit" value="Enviar">
+                <input type="submit" formaction="registro.php" name="registro" value="Crear cuenta">
             </form>
             <p>$error</p>
     </body>
