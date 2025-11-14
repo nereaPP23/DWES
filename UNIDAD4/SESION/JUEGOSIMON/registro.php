@@ -7,7 +7,6 @@ $db = 'bdsimon';
 $un = 'root';
 $pw = '';
 
-try{
 $connection = new mysqli($hn, $un, $pw, $db);
  if ($connection->connect_error) die("Fatal Error");
 
@@ -21,20 +20,17 @@ if (isset($_POST['submit'])) {
     $contrasenia2 = $_POST['contrasenia2'];
     if ($contrasenia == $contrasenia2){
         $query = "INSERT INTO usuarios (Nombre, Clave) VALUES ('$usuario', '$contrasenia')";
-        if ($connection->errno == 1062) {
-            throw new Exception("El usuario ya existe");
-        }else if ($contrasenia != $contrasenia2) {
-        $error = "Las contraseñas no coinciden";
-    }else{
-        header("Location: login.php");
+        $result = $connection->query($query);
+        if (!$result) die("Fatal Error");
+          header("Location: login.php");
         exit();
+    }else{
+      $error = "Las contraseñas no coinciden";
     }
     }
  }
-}
-}catch(Exception $e){
-    $error = $e->getMessage();
-}
+
+
 $connection->close();
     
 
