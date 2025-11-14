@@ -38,8 +38,9 @@ if ($_SESSION['pulsaciones'] >= $_SESSION['numero']) {
 echo <<<END
 <form method="post" action="jugar.php">
     <h1>SIMÓN</h1>
-        <h2>Pulsa los botones en el orden correspondiente</h2>
 END;
+
+echo "<h2>$_SESSION[usuario], pulsa los colores en el orden correspondiente</h2>";
 
 //generar los botones segun los colores seleccionados
 $todos_colores=array('red','blue','yellow','green','purple','orange','pink','brown');

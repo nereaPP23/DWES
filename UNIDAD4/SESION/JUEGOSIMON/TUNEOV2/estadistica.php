@@ -47,6 +47,15 @@ for ($j = 0 ; $j < $rows ; ++$j) {
     
  }
 
+
+
+
+
+
+
+
+
+ 
  $result->close();
 
   
@@ -58,7 +67,31 @@ echo <<<_END
 _END;
 
 echo "<br>";
-echo "<a href='inicio.php'>Volver a jugar</a><br><br>";
+echo "Nivel de dificultad: ";
+echo <<<_END
+<form action="estadistica.php" method="post">
+        <label for="numero">Numero de circulos</label>
+        <select name="numero">
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+        </select>
+        <label for="numero-colores">numero de colores </label>
+        <select name="numero-colores">
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+        </select><br><br>
+        <input type="submit" name="submit" value="Estadisticas">
+        </form>
+
+_END;
+echo "<br>";
+echo "<a href='dificultad.php'>Volver a jugar</a><br><br>";
 
 $connection->close();
 
