@@ -46,17 +46,56 @@ for ($j = 0 ; $j < $rows ; ++$j) {
     echo "</tr>";
     
  }
+ $result->close();
 
 
 
+if (isset($_POST['submit'])) {
+    if (!empty($_POST['numero']) && !empty($_POST['numero-colores'])){
+        $numero = $_POST['numero'];
+        $numero_colores = $_POST['numero-colores'];
+        $query2 = "SELECT u.Codigo, u.Nombre, COUNT(j.acierto) AS acierto, j.numcirculos, j.numcolores FROM usuarios u LEFT JOIN jugadas j ON u.Codigo = j.codigousu GROUP BY u.Codigo";
+        $result2 = $connection->query($query2);
+        if (!$result2) die("Fatal Error");
 
 
+echo <<<_END
+            <table border="1">
+                <tr>
+                    <th>Codigo usuario</th>
+                    <th>Nombre</th>
+                    <th>Numero circulos</th>
+                    <th>Numero colores</th>
+                    <th>Numero aciertos</th>
+                </tr>
+_END;
+
+
+        $rows = $result2->num_rows;
+        for ($j = 0 ; $j < $rows ; ++$j) {
+            $result2->data_seek($j);
+            echo '<tr>';
+            echo '<td>' .htmlspecialchars($result2->fetch_assoc()['Codigo']). '</td>';
+            $result2->data_seek($j);
+            echo '<td>' .htmlspecialchars($result2->fetch_assoc()['Nombre']). '</td>';
+            $result2->data_seek($j);
+            echo '<td>' .htmlspecialchars($result2->fetch_assoc()['numcirculos']). '</td>';
+            $result2->data_seek($j);
+            echo '<td>' .htmlspecialchars($result2->fetch_assoc()['numcolores']). '</td>';
+            $result2->data_seek($j);
+            echo '<td>' .htmlspecialchars($result2->fetch_assoc()['acierto']). '</td>';
+            echo "</tr>";
+            
+         }
+         $result2->close();
+    }
+
+}
 
 
 
 
  
- $result->close();
 
   
 
