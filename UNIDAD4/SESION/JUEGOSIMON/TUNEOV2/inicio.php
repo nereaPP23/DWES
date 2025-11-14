@@ -5,13 +5,13 @@ session_start();
 unset($_SESSION['colores-escogidos']); //Para eliminar una variable de sesión previamente almacenada
 unset($_SESSION['colores-correctos']); 
 
-$_SESSION['numero'] = intval($_POST['numero']);
-$_SESSION['numero-colores'] = intval($_POST['numero-colores']);
 
 $todos_colores = array('red','blue','yellow','green','purple','orange','pink','brown');
 
 //seleccionamos solo los colores permitidos por el jugador
 $colores_disponibles=array_slice($todos_colores,0,$_SESSION['numero-colores']);
+
+$_SESSION['colores-correctos'] = [];
 for ($i = 0; $i < $_SESSION['numero']; $i++) {
     $_SESSION['colores-correctos'][$i] = $colores_disponibles[rand(0,count ($colores_disponibles)-1)];
 }

@@ -1,7 +1,6 @@
 <?php
 
 session_start();
-
 $hn = 'localhost';
 $db = 'bdsimon';
 $un = 'root';
@@ -17,7 +16,12 @@ if (isset($_POST['submit'])) {
     $numero = $_POST['numero'];
     $numero_colores = $_POST['numero-colores'];
     $codigousu = $_SESSION['codigousu'];
-    $query = "INSERT INTO jugadas (codigousu, numcolores, numcirculos) VALUES ('$codigousu','$numero_colores', '$numero')";
+
+    $_SESSION['numero'] = $numero;
+    $_SESSION['numero-colores'] = $numero_colores;
+
+
+    $query = "INSERT INTO jugadas (codigousu, numcirculos, numcolores) VALUES ('$codigousu','$numero', '$numero_colores')";
         $result = $connection->query($query);
         if (!$result) die("Fatal Error");
           header("Location: inicio.php");
@@ -62,6 +66,8 @@ echo <<<_END
 </html>
 
 _END;
+
+
 
 
 ?>

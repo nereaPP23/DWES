@@ -48,7 +48,7 @@ echo <<<_END
     <body>
         <h1>SIMÓN</h1>
             <h2>Ingresa tus datos</h2>
-            <form action="dificultad.php" method="post">
+            <form action="login.php" method="post">
                 <label for="usuario">Usuario:</label><br>
                 <input type="text" name="usuario"><br><br>
                 <label for="contrasenia">Contraseña:</label><br>
