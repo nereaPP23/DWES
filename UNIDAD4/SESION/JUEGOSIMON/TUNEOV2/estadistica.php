@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
     if (!empty($_POST['numero']) && !empty($_POST['numero-colores'])){
         $numero = $_POST['numero'];
         $numero_colores = $_POST['numero-colores'];
-        $query2 = "SELECT u.Codigo, u.Nombre, COUNT(j.acierto) AS acierto, j.numcirculos, j.numcolores FROM usuarios u LEFT JOIN jugadas j ON u.Codigo = j.codigousu WHERE j.numcirculos = $numero AND j.numcolores = $numero_colores GROUP BY u.Codigo";
+        $query2 = "SELECT u.Codigo, u.Nombre, COUNT(j.acierto) AS acierto, j.numcirculos, j.numcolores FROM usuarios u LEFT JOIN jugadas j ON u.Codigo = j.codigousu WHERE j.numcirculos = $numero AND j.numcolores = $numero_colores GROUP BY u.Codigo, j.numcirculos, j.numcolores";
         $result2 = $connection->query($query2);
         if (!$result2) die("Fatal Error");
 

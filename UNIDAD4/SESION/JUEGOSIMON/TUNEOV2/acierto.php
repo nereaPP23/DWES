@@ -19,7 +19,7 @@ $connection = new mysqli($hn, $un, $pw, $db);
     $row=$result->fetch_assoc();
     $codigousu = $row['Codigo'];
 
-    $query2 = "INSERT INTO jugadas (codigousu, acierto, numcirculos, numcolores) VALUES ($codigousu, 1, $num, $col)";
+    $query2 = "INSERT INTO jugadas (codigousu, acierto) VALUES ($codigousu, 1)";
     
 
         $result->close();
