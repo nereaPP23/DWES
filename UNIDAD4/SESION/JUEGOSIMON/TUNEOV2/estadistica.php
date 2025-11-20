@@ -16,37 +16,6 @@ $connection = new mysqli($hn, $un, $pw, $db);
         $result = $connection->query($query);
         if (!$result) die("Fatal Error");
 
-echo <<<_END
-<html>
-    <body>
-        <h1>SIMÓN</h1>
-_END;
-
-        echo "<h2>$_SESSION[usuario], los resultados son:</h2>";
-
-echo <<<_END
-            <table border="1">
-                <tr>
-                    <th>Codigo usuario</th>
-                    <th>Nombre</th>
-                    <th>Numero aciertos</th>
-                </tr>
-_END;
-
-
-$rows = $result->num_rows;
-for ($j = 0 ; $j < $rows ; ++$j) {
-    echo '<tr>';
-    $result->data_seek($j);
-    echo '<td>' .htmlspecialchars($result->fetch_assoc()['Codigo']). '</td>';
-    $result->data_seek($j);
-    echo '<td>' .htmlspecialchars($result->fetch_assoc()['Nombre']). '</td>';
-    $result->data_seek($j);
-    echo '<td>' .htmlspecialchars($result->fetch_assoc()['acierto']). '</td>';
-    echo "</tr>";
-    
- }
- $result->close();
 
 
 
