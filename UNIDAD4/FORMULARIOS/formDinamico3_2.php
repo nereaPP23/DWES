@@ -24,7 +24,7 @@ if (isset($_POST['enviar2']) && !empty($_POST['num'])) {
         }
 }else{
     // primer formulario: número de campos
-        echo "<form action='pruebaFormDinamico2.php' method='post'>";
+        echo "<form action='formDinamico3_2.php' method='post'>";
         echo "<label for='num'>Número de campos:</label><br>";
         echo "<input type='number' id='num' name='num' required><br><br>";
         echo "<button type='submit' name='enviar2' value='enviar2'>Enviar</button>";
