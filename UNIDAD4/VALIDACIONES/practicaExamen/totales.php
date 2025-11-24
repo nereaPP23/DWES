@@ -14,7 +14,7 @@ $num = count($_SESSION['contactos']);
 echo "<h1>Agenda</h1>";
 echo "<h2>Hola $_SESSION[usuario]</h2>";
 
-
+    
 $connection = new mysqli($hn, $un, $pw, $db);
  if ($connection->connect_error) die("Fatal Error");
 
@@ -56,7 +56,8 @@ _END;
         $result->close();
         $connection->close();
 
-    echo "</table>";
-
+        echo "</table><br><br>";
+        echo "<a href='index.php'>Volver a loguearse</a><br>";
+        echo "<a href='inicio.php'>Introducir mas contactos para $_SESSION[usuario]</a><br>";
 
 ?>

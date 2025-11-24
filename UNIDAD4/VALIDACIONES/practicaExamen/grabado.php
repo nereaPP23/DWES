@@ -11,4 +11,5 @@ echo "<a href='index.php'>Volver a loguearse</a><br>";
 echo "<a href='inicio.php'>Introducir mas contactos para $_SESSION[usuario]</a><br>";
 echo "<a href='totales.php'>Total de contactos guardados</a><br>";
 
+
 ?>

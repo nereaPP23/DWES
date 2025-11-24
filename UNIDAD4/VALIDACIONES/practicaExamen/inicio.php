@@ -1,6 +1,8 @@
 <?php
 
 session_start();
+
+
 $imagenes = ["imagenes/OIP0.jfif","imagenes/OIP1.jfif","imagenes/OIP2.jfif","imagenes/OIP3.jfif","imagenes/OIP4.jfif"];
 
 
