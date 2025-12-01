@@ -68,9 +68,12 @@ $inscripcion='';
         $rows = $result->num_rows;
         if ($rows == 1) {
             $query2 = "INSERT INTO matricula (dnialumno, codcurso, pruebaA, pruebaB, tipo, inscripcion) 
-            VALUES ($dni, $codCurso, $pruebaA, $pruebaB, '$tipo', $inscripcion)";
-            if (!$connection->query($query2)) die("Fatal Error");
-            $guardado= 'Los datos se han guardado correctamente';
+            VALUES ('$dni', '$codCurso', $pruebaA, $pruebaB, '$tipo', '$inscripcion')";
+            if ($connection->query($query2)) {
+                $guardado = "La matrícula del alumno $dni en el curso $codCurso se ha realizado correctamente.";
+            } else {
+                $error = "No se ha podido guardar la matrícula.";
+            }
         }else {
             $error = "El codigo del curso no existe";
         }
@@ -91,9 +94,9 @@ echo <<<_END
                 <label for="codCurso">COD CURSO:</label><br>
                 <input type="text" name="codCurso"><span style="color:red">*$errorCod</span><br><br>
                 <label for="pruebaA">PRUEBA A:</label><br>
-                <input type="text" name="pruebaA"><span style="color:red">*$errorPruebaA</span><br><br>
+                <input type="number" name="pruebaA"><span style="color:red">*$errorPruebaA</span><br><br>
                 <label for="pruebaB">PRUEBA B:</label><br>
-                <input type="text" name="pruebaB"><span style="color:red">*$errorPruebaB</span><br><br>
+                <input type="number" name="pruebaB"><span style="color:red">*$errorPruebaB</span><br><br>
                 <label for="tipo">TIPO:</label><br>
                 <input type="text" name="tipo"><span style="color:red">*$errorTipo</span><br><br>
                 <label for="inscripcion">INSCRIPCION:</label><br>
