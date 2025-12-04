@@ -39,7 +39,7 @@ echo <<<_END
                 <input type="text" name="sol"><br><br>
                 <input type="submit" name="submit" value="Enviar">
             </form>
-            <a href='index.php'>Ver puntos por jugador</a><br>
+            <a href='puntos.php'>Ver puntos por jugador</a><br>
             <a href='resultado.php'>Resultados del dia</a><br>
     </body>
 </html>

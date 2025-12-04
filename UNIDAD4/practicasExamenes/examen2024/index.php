@@ -20,22 +20,24 @@ $error='';
     $contrasenia = $_POST['contrasenia'];
     
 
+    //consulta parametrizada
+    $stmt = $connection->prepare("SELECT login, nombre FROM jugador WHERE login = ? AND clave = ?");
+    
+    $stmt->bind_param("ss", $usuario, $contrasenia);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-     $query = "SELECT login, nombre FROM jugador WHERE login = '$usuario' AND clave = '$contrasenia'";
-     $result = $connection->query($query);
-     if (!$result) die("Fatal Error");
-     $rows = $result->num_rows;
-     if ($rows == 1) {
-        $fila = $result->fetch_assoc();
+    $fila = $result->fetch_assoc();
+    if ($fila) {
         $_SESSION['login'] = $fila ['login'];
         $_SESSION['nombre']  = $fila['nombre'];
        
          header("Location: inicio.php");
          exit();
-     }else {
+    } else {
          $error = "Usuario o contraseña incorrectos";
-     }
-    $result->close();
+    }
+     $stmt->close();
 
     }
  }
