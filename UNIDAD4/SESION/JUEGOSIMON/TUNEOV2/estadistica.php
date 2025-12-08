@@ -12,7 +12,7 @@ $pw = '';
 $connection = new mysqli($hn, $un, $pw, $db);
  if ($connection->connect_error) die("Fatal Error");
 
-    $query = "SELECT m.dnialumno, COUNT(j.acierto) AS acierto FROM usuarios u LEFT JOIN jugadas j ON u.Codigo = j.codigousu GROUP BY u.Codigo";
+    $query = "SELECT u.nombre, COUNT(j.acierto) AS acierto FROM usuarios u LEFT JOIN jugadas j ON u.Codigo = j.codigousu GROUP BY u.Codigo";
         $result = $connection->query($query);
         if (!$result) die("Fatal Error");
 
