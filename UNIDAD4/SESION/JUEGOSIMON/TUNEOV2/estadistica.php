@@ -39,6 +39,22 @@ echo <<<_END
                 </tr>
 _END;
 
+        /**
+         * for ($j = 0 ; $j < $rows ; ++$j) {
+         *   $result2->data_seek($j);
+         *   $row = $result2->fetch_assoc();
+
+         *   echo "<tr>";
+         *   echo "<td>" . htmlspecialchars($row['Codigo']) . "</td>";
+         *   echo "<td>" . htmlspecialchars($row['Nombre']) . "</td>";
+         *   echo "<td>" . htmlspecialchars($row['numcirculos']) . "</td>";
+         *   echo "<td>" . htmlspecialchars($row['numcolores']) . "</td>";
+         *   echo "<td>" . htmlspecialchars($row['acierto']) . "</td>";
+         *   echo "</tr>";
+         *   }
+         */
+
+
 
         $rows = $result2->num_rows;
         for ($j = 0 ; $j < $rows ; ++$j) {
