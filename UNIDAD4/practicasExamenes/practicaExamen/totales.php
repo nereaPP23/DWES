@@ -34,6 +34,24 @@ echo <<<_END
                 </tr>
 _END;
 
+/**Otra forma de hacerlo
+ * $result->data_seek($j);       // Mueve el puntero a la fila $j
+$row = $result->fetch_assoc(); // Obtiene toda la fila como array asociativo
+
+echo "<tr>";
+echo "<td>" . htmlspecialchars($row['Codigo']) . "</td>";
+echo "<td>" . htmlspecialchars($row['Nombre']) . "</td>";
+echo "<td>" . htmlspecialchars($row['numContactos']) . "</td>";
+echo "<td>";
+
+for ($i = 0; $i < $row['numContactos']; $i++) {
+    echo "<div style='width:10px; height:10px; margin-right:10px; border-radius:50%; background-color:red; border:2px solid #ff0000ff; display:inline-block;'></div>";
+}
+
+echo "</td>";
+echo "</tr>";
+ */
+
 
         $rows = $result->num_rows;
         for ($j = 0 ; $j < $rows ; ++$j) {
