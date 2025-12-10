@@ -16,7 +16,7 @@ if (!isset($_SESSION['login'])) {
 $simbolos = ["cereza.png","limon.png","campana.png","estrella.png","diamante.png"];
 
 // Generar tres resultados aleatorios usando rand()
-$r1 = $simbolos[rand(0, count($simbolos)-1)];
+$r1 = $simbolos[rand(0, count($simbolos)-1)]; //se usa -1 porque el array tiene 5 elementos pero va del 0-4, si saliera de numero random el 5, daria error
 $r2 = $simbolos[rand(0, count($simbolos)-1)];
 $r3 = $simbolos[rand(0, count($simbolos)-1)];
 
