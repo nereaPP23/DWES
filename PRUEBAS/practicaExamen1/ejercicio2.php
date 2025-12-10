@@ -1,0 +1,58 @@
+<?php
+
+session_start();
+
+$hn = 'localhost';
+$db = 'oposicion';
+$un = 'root';
+$pw = '';
+
+
+$connection = new mysqli($hn, $un, $pw, $db);
+ if ($connection->connect_error) die("Fatal Error");
+
+
+
+$dni=$_SESSION['dniP'];
+$nombre=$_SESSION['nombreP'];
+$totalHoras=0;
+
+echo "<span style='background-color:orange'>PROFESOR $dni</span><span style='background-color:lightblue'>NOMBRE $nombre</span>";
+
+$query= "SELECT * FROM curso WHERE profesor='$dni'";
+ $result = $connection->query($query);
+        if (!$result) die("Fatal Error");
+
+        echo <<<_END
+            <table border="1">
+                <tr>
+                    <th>codigocurso</th>
+                    <th>nombrecurso</th>
+                    <th>maxalumnos</th>
+                    <th>fechaini</th>
+                    <th>fechafin</th>
+                    <th>numhoras</th>
+                    <th>profesor</th>
+                </tr>
+_END;
+
+    while($row=$result->fetch_assoc()){
+        echo "<tr>";
+        echo "<td>" . htmlspecialchars($row['codigocurso']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['nombrecurso']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['maxalumnos']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['fechaini']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['fechafin']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['numhoras']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['profesor']) . "</td>";
+        $totalHoras+=$row['numhoras'];
+        echo "</tr>";
+    }
+
+    echo "</table>";
+    echo "<span style='background-color:lightblue'>Total de horas impartidas: $totalHoras</span>";
+
+    $result->close();
+    $connection->close();
+
+?>
