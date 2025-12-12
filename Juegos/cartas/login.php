@@ -1,6 +1,6 @@
 <?php // login.php
 $hn = 'localhost';
-$db = 'examen';
+$db = 'cartas';
 $un = 'root';
 $pw = '';
 ?>
