@@ -3,7 +3,7 @@
 session_start();
 
 $hn = 'localhost';
-$db = 'examen';
+$db = 'cartas';
 $un = 'root';
 $pw = '';
 

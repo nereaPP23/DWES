@@ -3,7 +3,7 @@
 session_start();
 
 $hn = 'localhost';
-$db = 'examen';
+$db = 'cartas';
 $un = 'root';
 $pw = '';
 
@@ -29,16 +29,18 @@ if ($carta1==$carta2){
     $updatePuntos=-1;
 }
 
+echo "<h3>Puntos por jugador</h3>";
+
 $intentos=$_SESSION['intentos'];
 $login=$_SESSION['login'];
 
-$stmt = $connection->prepare("UPDATE jugador SET puntos=puntos +?, extra=extra + ? WHERE jugador.login=?");
+$stmt = $connection->prepare("UPDATE jugador SET puntos=puntos +?, extra=extra + ? WHERE login=?");
 $stmt->bind_param("iis", $updatePuntos, $intentos, $login);
 $stmt->execute();
 
 $stmt->close();
 
-$query="SELECT nombre, puntos, extra FROM jugador WHERE login='$login'";
+$query="SELECT nombre, puntos, extra FROM jugador";
 $resultado=$connection->query($query);
 
 echo "<table border='1'>";
