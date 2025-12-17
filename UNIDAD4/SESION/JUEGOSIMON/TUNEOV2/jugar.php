@@ -44,7 +44,7 @@ echo "<h2>$_SESSION[usuario], pulsa los colores en el orden correspondiente</h2>
 
 //generar los botones segun los colores seleccionados
 $todos_colores=array('red','blue','yellow','green','purple','orange','pink','brown');
-$colores_disponibles = array_slice($todos_colores, 0, $_SESSION['numero-colores']);
+$colores_disponibles = array_slice($todos_colores, 0, $_SESSION['numero-colores']); //array_slice(array, start, length)
 
 foreach ($colores_disponibles as $color) {
     $nombre = strtoupper($color);
