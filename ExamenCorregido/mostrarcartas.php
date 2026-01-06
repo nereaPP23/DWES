@@ -3,6 +3,7 @@
 session_start();
 
 
+
 $levantar=-1;
 $login= $_SESSION['login'];
 $combinacion=[];
@@ -29,7 +30,7 @@ END;
 
 echo "<form action='mostrarcartas.php' method='post'>";
 for ($i=0; $i<6; $i++){
-    echo "<button type='submit' name='levantar'value='$i'>Levantar carta". ($i+1) ."</button>";
+    echo "<button type='submit' name='levantar'value='$i'>Levantar carta ". ($i+1) ."</button>";
 }
 echo "</form>";
 

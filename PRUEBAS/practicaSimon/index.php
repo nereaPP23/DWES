@@ -1,9 +1,9 @@
-<?php
+<?php  
 
 session_start();
 
 $hn = 'localhost';
-$db = 'examen';
+$db = 'bdsimon';
 $un = 'root';
 $pw = '';
 
@@ -17,25 +17,23 @@ $error='';
  if (isset($_POST['submit'])) {
     if (!empty($_POST['usuario']) && !empty($_POST['contrasenia'])){
     $usuario = $_POST['usuario'];
-    $contrasenia = $_POST['contrasenia'];
-    
+     $contrasenia = $_POST['contrasenia'];
 
-    //consulta parametrizada
-    $stmt = $connection->prepare("SELECT login FROM jugador WHERE login = ? AND clave = ?");
-    
-    $stmt->bind_param("ss", $usuario, $contrasenia);
-    $stmt->execute();
-    $result = $stmt->get_result();
 
-    $fila = $result->fetch_assoc();
-    if ($fila) {
-        $_SESSION['login'] = $fila ['login'];
-         header("Location: mostrarcartas.php");
+
+
+     $query = "SELECT * FROM usuarios WHERE Nombre = '$usuario' AND Clave = '$contrasenia'";
+     $result = $connection->query($query);
+     if (!$result) die("Fatal Error");
+     $rows = $result->num_rows;
+     if ($rows == 1) {
+         $_SESSION['usuario'] = $usuario;
+         header("Location: inicio.php");
          exit();
-    } else {
+     }else {
          $error = "Usuario o contraseña incorrectos";
-    }
-     $stmt->close();
+     }
+    $result->close();
 
     }
  }
@@ -45,18 +43,19 @@ $error='';
 echo <<<_END
 <html>
     <body>
-        <h1>Iniciar sesión</h1>
+        <h1>SIMÓN</h1>
+            <h2>Ingresa tus datos</h2>
             <form action="index.php" method="post">
                 <label for="usuario">Usuario:</label><br>
                 <input type="text" name="usuario"><br><br>
                 <label for="contrasenia">Contraseña:</label><br>
                 <input type="password" name="contrasenia"><br><br>
-                <input type="submit" name="submit" value="Entrar">
+                <input type="submit" name="submit" value="Enviar">
+                <input type="submit" formaction="registro.php" name="registro" value="Crear cuenta">
             </form>
-            <p style="color:red">$error</p>
+            <p>$error</p>
     </body>
 </html>
 _END;
-                                            
-?>
 
+?>
