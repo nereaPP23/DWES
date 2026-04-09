@@ -30,11 +30,12 @@ echo <<<_END
                     <th>Codigo usuario</th>
                     <th>Nombre</th>
                     <th>Numero aciertos</th>
+                    <th>Grafica</th>
                 </tr>
 _END;
 
 
-$rows = $result->num_rows;
+/* $rows = $result->num_rows;
 for ($j = 0 ; $j < $rows ; ++$j) {
     echo '<tr>';
     $result->data_seek($j);
@@ -44,10 +45,26 @@ for ($j = 0 ; $j < $rows ; ++$j) {
     $result->data_seek($j);
     echo '<td>' .htmlspecialchars($result->fetch_assoc()['acierto']). '</td>';
     echo "</tr>";
-    
  }
 
- $result->close();
+ $result->close(); */
+
+  while ($fila = $result->fetch_assoc()) {
+    echo "<tr>";
+    echo "<td>".$fila['Codigo']."</td>";
+
+    echo "<td>".$fila['Nombre']."</td>";
+
+    echo "<td>".$fila['acierto']."</td>";
+
+    echo "<td>";
+    for ($i = 0; $i < $fila['acierto']; $i++) {
+        echo "<div style='width:1px; height:15px; background-color:#000980ff; display:inline-block;'></div>";
+    }
+    echo "</td>";
+
+    echo "</tr>";
+}
 
   
 

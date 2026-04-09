@@ -17,23 +17,8 @@ $error='';
  if (isset($_POST['submit'])) {
     if (!empty($_POST['dni'])){
     $dni = $_POST['dni'];
-
-
-     $queryP = "SELECT dniP, nombreP FROM profesor WHERE dniP = '$dni'";
-     $result = $connection->query($queryP);
-     if (!$result) die("Fatal Error");
-     $rows = $result->num_rows;
-     if ($rows == 1) {
-        $fila = $result->fetch_assoc();
-        $_SESSION['dniP']= $fila['dniP'];
-        $_SESSION['nombreP'] = $fila['nombreP'];
-         header("Location: ejercicio2.php");
-         exit();
-     }else {
-         $error = "Usuario o contraseña incorrectos";
-     }
-    $result->close();
-
+    
+    
 
     $queryA = "SELECT dniA, nombreA FROM alumno WHERE dniA = '$dni'";
      $result = $connection->query($queryA);
@@ -41,32 +26,45 @@ $error='';
      $rows = $result->num_rows;
      if ($rows == 1) {
         $fila = $result->fetch_assoc();
-        $_SESSION['dniA']= $fila['dniA'];
-        $_SESSION['nombreA'] = $fila['nombreA'];
+         $_SESSION['dniA'] = $fila['dniA'];
+         $_SESSION['nombreA']= $fila['nombreA'];
          header("Location: ejercicio3.php");
          exit();
      }else {
-         $error = "Usuario o contraseña incorrectos";
+         $error = "No existe un usuario con ese dni";
      }
     $result->close();
-
     }
- }
+
+    $queryP = "SELECT dniP, nombreP FROM profesor WHERE dniP = '$dni'";
+     $result = $connection->query($queryP);
+     if (!$result) die("Fatal Error");
+     $rows = $result->num_rows;
+     if ($rows == 1) {
+        $fila = $result->fetch_assoc();
+         $_SESSION['dniP'] = $fila['dniP'];
+         $_SESSION['nombreP']= $fila['nombreP'];
+         header("Location: ejercicio2.php");
+         exit();
+     }else {
+         $error = "No existe un usuario con ese dni";
+     }
+    $result->close();
+    }
 
 
     $connection->close();
 echo <<<_END
 <html>
     <body>
-        <h1>Agenda de contactos</h1>
+        <h1>Iniciar sesión</h1>
             <form action="ejercicio1.php" method="post">
                 <label for="dni">DNI:</label><br>
                 <input type="text" name="dni"><br><br>
                 <input type="submit" name="submit" value="Entrar">
             </form>
-            <p>$error</p>
+            <p style="color:red">$error</p>
     </body>
 </html>
 _END;
-
 ?>
