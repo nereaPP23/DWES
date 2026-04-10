@@ -10,7 +10,8 @@ return '¡Hola mundo!';
 Route::get('ruta1/{id?}', function($id=0)
 {
 return 'Esto es la ruta 1 con id '.$id;
-});
+})
+->where('id', '[0-9]+');
 
 Route::get('ruta2', function()
 {
